@@ -2,16 +2,14 @@
 
 ## Where things live
 
-| What | Where |
-|---|---|
-| Live site | https://subhasiniengg.com |
-| Source code | `github.com/Karthik-Dulam/subhasini-engg-works` (branch: `main`) |
-| Hosting | Netlify — project name `subhasini-engg-works` |
-| Netlify admin dashboard | https://app.netlify.com/projects/subhasini-engg-works |
-| Netlify login | `sales@subhasiniengg.com` (this account owns the site — log into netlify.com with this email to access the dashboard) |
-| Contact form backend | Web3Forms, access key is hardcoded in `contact.html` (`access_key` hidden input) |
-| DNS | Managed via Squarespace Domains UI, but nameservers are still Google Cloud DNS (`ns-cloud-a*.googledomains.com`) — this is normal for domains migrated from the old Google Domains |
-| Email | Google Workspace (MX/DKIM/SPF records on the domain) — untouched by any of this, keep it that way |
+- **Live site:** https://subhasiniengg.com
+- **Source code:** `github.com/Karthik-Dulam/subhasini-engg-works` (branch: `main`)
+- **Hosting:** Netlify — project name `subhasini-engg-works`
+- **Netlify admin dashboard:** https://app.netlify.com/projects/subhasini-engg-works
+- **Netlify login:** `sales@subhasiniengg.com` (this account owns the site — log into netlify.com with this email to access the dashboard)
+- **Contact form backend:** Web3Forms, access key is hardcoded in `contact.html` (`access_key` hidden input)
+- **DNS:** Managed via Squarespace Domains UI, but nameservers are still Google Cloud DNS (`ns-cloud-a*.googledomains.com`) — this is normal for domains migrated from the old Google Domains
+- **Email:** Google Workspace (MX/DKIM/SPF records on the domain) — untouched by any of this, keep it that way
 
 ## How deployment works right now
 
@@ -38,13 +36,11 @@ Right now, GitHub and the live site are **not connected**. If you want every `gi
 
 ## DNS records currently in place (Squarespace DNS Settings)
 
-```
-A       @      75.2.60.5                                (Netlify apex — do not add other A records here)
-CNAME   www    subhasini-engg-works.netlify.app
-MX      @      smtp.google.com     (priority 1)          — Google Workspace email, do not touch
-TXT     @      v=spf1 include:_spf.google.com ~all       — SPF, do not touch
-TXT     google._domainkey   v=DKIM1; k=rsa; ...           — DKIM, do not touch
-```
+- `A` record, name `@`, value `75.2.60.5` (Netlify apex — do not add other A records here)
+- `CNAME` record, name `www`, value `subhasini-engg-works.netlify.app`
+- `MX` record, name `@`, priority `1`, value `smtp.google.com` — Google Workspace email, do not touch
+- `TXT` record, name `@`, value `v=spf1 include:_spf.google.com ~all` — SPF, do not touch
+- `TXT` record, name `google._domainkey`, value `v=DKIM1; k=rsa; ...` — DKIM, do not touch
 
 SSL is a Let's Encrypt certificate auto-issued and auto-renewed by Netlify (valid ~90 days at a time, renews itself — no action needed unless it ever shows as expired/broken, in which case re-check DNS first).
 
