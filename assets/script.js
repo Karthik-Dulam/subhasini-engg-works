@@ -1,3 +1,19 @@
+// ============ EMAIL OBFUSCATION ============
+// Keeps the raw email address out of the HTML source so basic scraper bots
+// (which just fetch + regex static HTML) can't harvest it. Real visitors
+// with JS enabled get a fully working mailto: link, same as before.
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-email-user]').forEach(el => {
+    const user = el.getAttribute('data-email-user');
+    const domain = el.getAttribute('data-email-domain');
+    const email = `${user}@${domain}`;
+    el.href = `mailto:${email}`;
+    if (el.hasAttribute('data-email-fill')) {
+      el.textContent = email;
+    }
+  });
+});
+
 // ============ NAVBAR: scroll shadow + mobile menu ============
 document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.getElementById('navbar');
@@ -131,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
         })
         .catch(() => {
           if (formResult) {
-            formResult.textContent = 'Could not send — please email us directly at sales@subhasiniengg.com.';
+            formResult.textContent = 'Could not send — please email us directly at ' + ['sales', 'subhasiniengg.com'].join('@') + '.';
             formResult.style.color = '#e05252';
           }
         })

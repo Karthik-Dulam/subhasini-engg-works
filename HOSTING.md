@@ -50,10 +50,22 @@ All pages are plain HTML/CSS/JS, no build step:
 
 - `index.html`, `about.html`, `products.html`, `gallery.html`, `contact.html`
 - `assets/style.css` — all styling
-- `assets/script.js` — nav menu, scroll animations, gallery lightbox, contact form submission logic
+- `assets/script.js` — nav menu, scroll animations, gallery lightbox, contact form submission logic, email de-obfuscation (see below)
 - `assets/images/` — all photos
 
 Edit the relevant `.html`/`.css`/`.js` file directly, test locally, then run `netlify deploy --prod --dir=.` to publish.
+
+## Email address handling (anti-scraping)
+
+The email address is **not** written as plain text anywhere in the HTML source. Instead, links use:
+
+```html
+<a href="#" data-email-user="sales" data-email-domain="subhasiniengg.com" data-email-fill>Email Us</a>
+```
+
+`assets/script.js` fills in the real `href="mailto:..."` and visible text at runtime via JS. This stops basic scraper bots (the ones that just fetch raw HTML and regex for `@` patterns) from harvesting the address for spam lists, while real visitors get a fully working email link exactly as before. Phone numbers are intentionally left as plain `tel:` links — phone spam isn't really driven by website scraping, and buyers expect one-tap calling on a B2B site.
+
+If you ever add a new email link, follow the same pattern instead of writing `mailto:sales@subhasiniengg.com` directly in HTML.
 
 ## Backing up / version control
 
