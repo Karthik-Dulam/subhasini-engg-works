@@ -118,16 +118,18 @@ pages, and basic a11y (heading order, alt text, contrast) before calling a site 
 
 Checked against our actual `assets/style.css`, not just eyeballed:
 
-- [ ] **Body font is Inter** (`--font-body: 'Inter', sans-serif`) — this is a real hit on the "Inter everywhere" tell. Mitigated somewhat by pairing with Barlow for all headings (not pure Inter-only), but still worth considering a body font swap if we want to move further from the default.
-- [ ] **Hero badge is the "eyebrow pill" tell, almost exactly** — `.hero-badge` is an uppercase, pill-shaped (`border-radius:99px`), accent-colored label sitting directly above the H1, plus a `.hero-badge-dot` with a 2s pulse animation — this matches "tiny uppercase label + decorative dot prefix above a centered headline" almost verbatim. In our case the badge content ("Approved Vendor — Savli GIDC Unit") is a real, checkable fact, not an invented "New"/sparkle badge, which is the main mitigating factor — but the *shape* of the pattern is a direct match and worth knowing about.
+- [x] **Body font** switched from Inter to IBM Plex Sans — a deliberate pairing for an engineering company (technical/documentation feel), still paired with Barlow for headings
+- [x] **Hero badge** rebuilt as a rectangular "nameplate" tag (left accent border, sharp corners, no pill shape) with the pulsing dot removed entirely — no longer matches the eyebrow-pill-plus-dot tell shape
+- [x] **No emojis anywhere on the site** — swept and removed every emoji glyph (feature-card icons, highlight-box icons, footer contact icons, flag emoji in a city name, product-placeholder icon)
+- [x] **Icons removed from every decorative location** — feature cards, highlight boxes, and product placeholders now use plain typography with no icon at all, since even our hand-drawn SVG replacements still read as the generic "icon-tile-above-heading" tell once repeated across a grid
+- [x] **Icons kept only in one deliberate, functional place**: the Contact page's Contact Information block (address / phone / email / vendor badge / signatory) — small monochrome line icons aiding quick scanning of 5 distinct info rows, not decorative filler
 - [x] Accent color is a muted blue (`#4a8db7`), not the purple/indigo/violet AI-gradient band
 - [x] No fake terminal mockup, no fabricated trust badges/stats, no invented compliance claims
 - [x] Real client list (14+ actual clients), real vendor code — checkable, not fabricated trust chrome
-- [x] No emoji-as-icons, no emoji bullets
 - [x] Card radius is differentiated (8px buttons vs 16px hero images), not one `rounded-2xl` slapped on everything
 - [ ] Worth still double-checking: spacing rhythm consistency and heading level order (h1→h2→h3 without skips) across all 5 pages
 
-Net take: not slop-free, but the two real hits (Inter body font, pill-shaped hero badge) are both explainable/intentional rather than unreviewed defaults — low priority to fix, but flagging honestly rather than claiming a clean sheet.
+Net take: the two real hits from the first pass (Inter body font, pill-shaped hero badge) are fixed, and all decorative icon/emoji usage has been removed sitewide except one deliberate, functional exception on the Contact page.
 
 ## Sources
 
